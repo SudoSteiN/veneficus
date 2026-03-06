@@ -1,0 +1,345 @@
+/* Veneficus Dashboard — Dark theme, monospace, CSS grid */
+
+:root {
+  --bg: #0d1117;
+  --bg-panel: #161b22;
+  --bg-card: #1c2128;
+  --border: #30363d;
+  --text: #c9d1d9;
+  --text-dim: #8b949e;
+  --text-bright: #f0f6fc;
+  --green: #3fb950;
+  --yellow: #d29922;
+  --red: #f85149;
+  --blue: #58a6ff;
+  --purple: #bc8cff;
+  --cyan: #39d2c0;
+  --font: "SF Mono", "Cascadia Code", "Fira Code", "JetBrains Mono", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 13px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-bright);
+  letter-spacing: 0.05em;
+}
+
+.header-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.header-meta .value {
+  color: var(--text);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.status-dot.connected { background: var(--green); }
+.status-dot.disconnected { background: var(--red); }
+
+/* ── Grid Layout ── */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr 280px;
+  grid-template-rows: 1fr 1fr 200px;
+  gap: 1px;
+  background: var(--border);
+  flex: 1;
+  overflow: hidden;
+}
+
+.panel {
+  background: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-header {
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* ── Agent Tree ── */
+
+.agent-tree { grid-row: 1 / 3; }
+
+.agent-item {
+  padding: 6px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.agent-item:hover {
+  background: var(--bg-card);
+}
+
+.agent-badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.agent-badge.working { background: var(--green); }
+.agent-badge.idle { background: var(--yellow); }
+.agent-badge.error { background: var(--red); }
+.agent-badge.done { background: var(--text-dim); }
+
+.agent-name {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.agent-sub {
+  padding-left: 20px;
+}
+
+/* ── Task Board ── */
+
+.task-board { grid-column: 2; }
+
+.task-columns {
+  display: flex;
+  gap: 8px;
+  height: 100%;
+}
+
+.task-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-column-header {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  padding: 4px 0;
+}
+
+.task-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+.task-card.blocked {
+  opacity: 0.5;
+}
+
+.task-card .task-id {
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.task-card .task-subject {
+  color: var(--text);
+  margin-top: 2px;
+}
+
+/* ── Hook Feed ── */
+
+.hook-feed { grid-column: 3; grid-row: 1 / 3; }
+
+.hook-item {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  display: flex;
+  gap: 8px;
+}
+
+.hook-time {
+  color: var(--text-dim);
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 55px;
+}
+
+.hook-type {
+  color: var(--blue);
+  flex-shrink: 0;
+  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hook-detail {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hook-item.failure .hook-type { color: var(--red); }
+.hook-item.success .hook-type { color: var(--green); }
+
+/* ── Parallel Exec ── */
+
+.parallel-exec { grid-column: 1; grid-row: 3; }
+
+.thread-item {
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thread-type {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--bg);
+}
+
+.thread-type.P { background: var(--blue); }
+.thread-type.F { background: var(--purple); }
+.thread-type.C { background: var(--yellow); }
+.thread-type.L { background: var(--cyan); }
+
+/* ── Comm Log ── */
+
+.comm-log { grid-column: 2; grid-row: 3; }
+
+.comm-item {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+}
+
+.comm-item .comm-agent {
+  color: var(--purple);
+  font-weight: 600;
+}
+
+.comm-item .comm-action {
+  color: var(--text-dim);
+}
+
+/* ── File Activity ── */
+
+.file-activity { grid-column: 3; grid-row: 3; }
+
+.file-item {
+  padding: 3px 8px;
+  font-size: 11px;
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.file-op {
+  font-weight: 600;
+  flex-shrink: 0;
+  width: 30px;
+}
+
+.file-op.read { color: var(--blue); }
+.file-op.write { color: var(--green); }
+.file-op.edit { color: var(--yellow); }
+
+.file-path {
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Token Tracker (in header) ── */
+
+.token-info {
+  display: flex;
+  gap: 16px;
+}
+
+.cost {
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* ── Empty states ── */
+
+.empty {
+  color: var(--text-dim);
+  text-align: center;
+  padding: 24px 12px;
+  font-size: 12px;
+  font-style: italic;
+}

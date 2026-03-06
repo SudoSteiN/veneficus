@@ -1,0 +1,34 @@
+# User Stories — Browser-based QA scenarios
+# Used by the QA agent (just qa) to verify the application via Playwright.
+#
+# Format:
+#   stories:
+#     - name: "Story name"
+#       url: "http://localhost:3000/path"
+#       steps:
+#         - action: navigate
+#           url: "http://localhost:3000"
+#         - action: click
+#           selector: "button.login"
+#         - action: type
+#           selector: "#email"
+#           value: "test@example.com"
+#         - action: assert-text
+#           selector: ".welcome"
+#           expected: "Welcome"
+#         - action: screenshot
+#           path: "screenshots/story-name.png"
+#       expected_outcome: "User sees welcome message after login"
+
+stories:
+  - name: "Homepage loads"
+    url: "http://localhost:3000"
+    steps:
+      - action: navigate
+        url: "http://localhost:3000"
+      - action: screenshot
+        path: "screenshots/homepage.png"
+      - action: assert-text
+        selector: "body"
+        expected: "Welcome"
+    expected_outcome: "Homepage renders with welcome text"

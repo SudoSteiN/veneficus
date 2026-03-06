@@ -1,0 +1,20 @@
+{
+  "project": "project-name",
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Example Feature",
+      "description": "Description of what this feature does",
+      "status": "pending",
+      "priority": 1,
+      "acceptance_criteria": [
+        "Criterion 1: specific, measurable outcome",
+        "Criterion 2: specific, measurable outcome"
+      ],
+      "files": [],
+      "validate": "",
+      "depends_on": [],
+      "notes": ""
+    }
+  ]
+}

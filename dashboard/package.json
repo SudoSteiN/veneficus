@@ -1,0 +1,17 @@
+{
+  "name": "veneficus-dashboard",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot server/index.ts",
+    "build": "bunx vite build",
+    "start": "bun run server/index.ts"
+  },
+  "dependencies": {
+    "solid-js": "^1.9.3"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0",
+    "vite-plugin-solid": "^2.10.0"
+  }
+}

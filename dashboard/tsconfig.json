@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "strict": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "types": ["bun-types"],
+    "paths": {
+      "~/*": ["./ui/*"]
+    }
+  },
+  "include": ["server/**/*.ts", "ui/**/*.ts", "ui/**/*.tsx"]
+}

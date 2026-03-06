@@ -1,0 +1,25 @@
+# Veneficus framework internals (hooks, setup, thread scripts)
+.veneficus/hooks/
+.veneficus/setup/
+.veneficus/threads/
+.veneficus/insights/
+.veneficus/skills/
+.veneficus/events/
+
+# Research docs — load selectively with /read when relevant
+Research/
+
+# Dashboard — not needed in agent context
+dashboard/node_modules/
+dashboard/dist/
+dashboard/*.db
+dashboard/*.db-journal
+
+# Build artifacts and logs
+*.db
+*.db-journal
+screenshots/
+.worktrees/
+
+# OS files
+.DS_Store

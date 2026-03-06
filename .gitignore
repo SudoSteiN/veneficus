@@ -1,0 +1,8 @@
+# Veneficus framework
+.veneficus/events/
+.worktrees/
+dashboard/node_modules/
+dashboard/dist/
+screenshots/
+*.db
+*.db-journal
