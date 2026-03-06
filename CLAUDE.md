@@ -13,8 +13,8 @@ Research/                    # 8 research documents on advanced Claude Code patt
 .veneficus/                  # THE FRAMEWORK ENGINE
   setup/                     # One-command initialization (init.py, install_deps.sh)
   docs/                      # Context-as-Contract (PRD, architecture, decisions, features.json)
-  agents/                    # Specialized agent personas (builder, validator, researcher, debugger, qa, simplifier, contrarian)
-  commands/                  # SDLC orchestration prompts (prime, plan, build, debug, review, ship, retro, continue)
+  agents/                    # Specialized agent personas (builder, validator, researcher, debugger, qa, simplifier, contrarian, ideator)
+  commands/                  # SDLC orchestration prompts (prime, ideate, plan, build, debug, review, ship, retro, continue)
   hooks/                     # Claude Code hook scripts
     validators/              # PostToolUse: syntax/lint/test validation
     emitters/                # Async event emission to dashboard
@@ -43,6 +43,7 @@ justfile                     # Human interface — all commands via `just`
 |---------|---------|
 | `just init` | Initialize framework in a project |
 | `just prime` | Load context, show current state |
+| `just ideate "desc"` | Conversational ideation: from idea to buildable project docs |
 | `just plan "desc"` | Generate structured implementation plan (with ambiguity gate) |
 | `just plan-team "desc"` | Plan + generate DESIGN_SPEC.md and tasks/*.md for native Agent Teams |
 | `just build feat-id` | TDD build cycle (red→green→refactor→optimize) |
