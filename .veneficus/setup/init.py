@@ -166,9 +166,8 @@ def main() -> None:
 
     info("")
     info("Veneficus initialized! Next steps:")
-    info("  1. Edit .veneficus/docs/PRD.md with your project details")
-    info("  2. Edit .veneficus/docs/architecture.md with your system design")
-    info("  3. Run: just prime")
+    info("  1. Run: just plan \"describe your project idea\"")
+    info("  2. Run: just prime")
 
 
 if __name__ == "__main__":

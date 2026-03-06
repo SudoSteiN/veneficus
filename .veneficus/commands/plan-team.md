@@ -7,6 +7,11 @@ The user will describe what they want to build or change: $ARGUMENTS
 
 ## Process
 
+### 0. Context Readiness Check
+Read `.veneficus/docs/PRD.md` and `.veneficus/docs/features.json`.
+If PRD.md contains `[Your project name]` or features.json contains `"project-name"`, stop and tell the user:
+"Your project doesn't have context docs yet. Run `just plan "your idea"` first — it will guide you through setup."
+
 1. **Read context**:
    - `.veneficus/docs/PRD.md`
    - `.veneficus/docs/architecture.md`

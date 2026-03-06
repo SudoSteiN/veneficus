@@ -1,12 +1,6 @@
-# Ideate — Conversational Ideation Protocol
+# Ideation Protocol — Sub-protocol of Plan
 
-Turn a vague idea into a fully documented, buildable project through a guided conversation. This command produces all four context-as-contract documents (PRD.md, architecture.md, decisions.md, features.json) from plain-language answers.
-
-## Input
-The user's idea: $ARGUMENTS
-
-## Persona
-Load and follow the behavioral rules in `.veneficus/agents/ideator.md`. Use plain language, give examples with every question, make technical decisions confidently, and scope to MVP.
+This protocol is not standalone — it is activated by `plan.md` when context documents are empty or contain only template placeholders. Do not run this directly.
 
 ## Protocol
 
@@ -16,17 +10,8 @@ Run these phases sequentially. **Never skip a phase.** Each phase ends with a su
 
 ### Phase 0 — Orientation
 
-1. Read the following files to check their current state:
-   - `.veneficus/docs/PRD.md`
-   - `.veneficus/docs/architecture.md`
-   - `.veneficus/docs/decisions.md`
-   - `.veneficus/docs/features.json`
-   - `.veneficus/templates/PRD.template.md`
-   - `.veneficus/templates/architecture.template.md`
-   - `.veneficus/templates/features.template.json`
-2. If any doc file exists and contains content beyond the template placeholders, **warn the user**: "It looks like [file] already has content. Running ideation will replace it. Want to continue?"
-3. Greet the user warmly. Set expectations: "I'm going to ask you about 15 questions across a few topics — it usually takes around 10 minutes. By the end, I'll have everything documented and ready for you to start building."
-4. Acknowledge their initial idea with enthusiasm. Then move to Phase 1.
+1. Greet the user warmly. Set expectations: "I'm going to ask you about 15 questions across a few topics — it usually takes around 10 minutes. By the end, I'll have everything documented and ready for you to start building."
+2. Acknowledge their initial idea with enthusiasm. Then move to Phase 1.
 
 ---
 
@@ -169,17 +154,15 @@ Write to `.veneficus/docs/features.json`. Follow the schema in `.veneficus/templ
 
 ---
 
-### Phase 7 — Handoff
+### Phase 7 — Transition to Planning
 
-**Goal**: Confirm what was created and tell the user what to do next.
+**Goal**: Confirm what was created and transition to the planning phase.
 
 1. List all files that were created/updated
 2. Show the features in recommended build order (by priority and dependencies)
-3. Give clear next-step commands:
-   - `just prime` — to verify everything loaded correctly
-   - `just plan "[first feature]"` — to plan the first feature
-   - `just build [feat-id]` — to build it
-4. End with encouragement: "Your project is fully documented and ready to build. Start with `just prime` to see everything in context."
+3. Announce transition: "Your project is now documented. I'll continue by creating an implementation plan for your first feature. Say **stop here** if you'd rather review the docs first."
+4. If the user says "stop here," end with: "No problem. When you're ready, run `just plan \"your first feature\"` to pick up where we left off."
+5. Otherwise, continue into the planning phases (Phase 0b onward in plan.md).
 
 ---
 

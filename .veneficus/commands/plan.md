@@ -7,7 +7,21 @@ The user will describe what they want to build or change: $ARGUMENTS
 
 ## Process
 
-### 0. Ambiguity Check
+### 0a. Context Readiness Check
+
+Before anything else, check whether the project has populated context documents.
+
+Read `.veneficus/docs/PRD.md` and `.veneficus/docs/features.json`.
+
+Context is **empty** if **any** of these are true:
+- `PRD.md` does not exist OR contains `[Your project name]`
+- `features.json` does not exist OR contains `"project": "project-name"` OR only has `"Example Feature"`
+
+**If context is empty** → Load the ideator persona from `.veneficus/agents/ideator.md` and execute the ideation protocol from `.veneficus/commands/ideation-protocol.md`. Use $ARGUMENTS as the user's initial idea. After ideation completes (Phase 7 of the protocol), continue to Phase 0b below.
+
+**If context is populated** → Skip directly to Phase 0b.
+
+### 0b. Ambiguity Check
 
 Before planning, assess the task description on four dimensions. For each, score 0.0 (completely clear) to 1.0 (completely unclear):
 
@@ -77,6 +91,7 @@ If ambiguity score is **≤ 0.3**, proceed directly to planning.
 Create a new feature entry with the plan's acceptance criteria
 
 ## Rules
+- **Context gate**: If context docs are empty, run ideation first. Never plan against placeholder templates.
 - **Ambiguity gate**: Do NOT skip the ambiguity check. Vague inputs produce bad plans. It's faster to ask 3 questions now than to redo the plan later.
 - Every step must have a clear, verifiable outcome
 - Identify parallelizable steps (multiple agents can work simultaneously)

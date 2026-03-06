@@ -23,12 +23,7 @@ deps:
 prime:
     {{claude_bin}} --dangerously-skip-permissions -p "$(cat {{veneficus}}/commands/prime.md)"
 
-# Conversational ideation: from idea to buildable project docs
-ideate description:
-    {{claude_bin}} --dangerously-skip-permissions \
-        -p "$(cat {{veneficus}}/agents/ideator.md)\n\n$(cat {{veneficus}}/commands/ideate.md | sed 's/\$ARGUMENTS/{{description}}/')\n\nThe user's idea: {{description}}\n\nBegin Phase 0 now."
-
-# Generate structured implementation plan
+# Generate structured implementation plan (auto-ideates if context docs are empty)
 plan description:
     {{claude_bin}} --dangerously-skip-permissions -p "$(cat {{veneficus}}/commands/plan.md | sed 's/\$ARGUMENTS/{{description}}/')"
 

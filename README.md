@@ -10,7 +10,7 @@ Veneficus wraps Claude Code with automated validation hooks, specialized agent p
 
 **Agent Hooks** run automatically on every tool call. Guards enforce scope *before* Claude writes. Validators check syntax, lint, and tests *after* every edit. Event emitters stream everything to a real-time dashboard.
 
-**Specialized Agents** handle distinct roles: ideator (conversational ideation from idea to docs), builder (writes code via TDD), validator (read-only audits against acceptance criteria), debugger (reproduce → diagnose → fix → verify), researcher (explores codebases and docs), and QA (browser automation with Playwright), plus **simplifier** and **contrarian** recovery personas for when agents get stuck.
+**Specialized Agents** handle distinct roles: ideator (auto-activated when plan detects empty context docs), builder (writes code via TDD), validator (read-only audits against acceptance criteria), debugger (reproduce → diagnose → fix → verify), researcher (explores codebases and docs), and QA (browser automation with Playwright), plus **simplifier** and **contrarian** recovery personas for when agents get stuck.
 
 **Context as Contract** anchors all work to four documents — `PRD.md`, `architecture.md`, `decisions.md`, and `features.json` — so every agent operates from the same source of truth.
 
@@ -43,7 +43,7 @@ just init
 
 ### Configure
 
-Run `just ideate "your app idea"` to populate the context docs through a guided conversation. Or fill them in manually in `.veneficus/docs/`:
+Run `just plan "your app idea"` to populate the context docs through a guided conversation (auto-ideates when docs are empty). Or fill them in manually in `.veneficus/docs/`:
 
 | File | Purpose |
 |------|---------|
@@ -55,8 +55,8 @@ Run `just ideate "your app idea"` to populate the context docs through a guided 
 ### Run
 
 ```bash
-# Guided ideation: from idea to buildable project docs
-just ideate "a recipe sharing app for home cooks"
+# Plan a new project (auto-ideates when context docs are empty)
+just plan "a recipe sharing app for home cooks"
 
 # Load context and see current state
 just prime
@@ -82,8 +82,7 @@ just ship v1.0.0
 |---------|-------------|
 | `just init` | Initialize framework in current project |
 | `just prime` | Load context, show current state |
-| `just ideate "desc"` | Conversational ideation: from idea to buildable project docs |
-| `just plan "desc"` | Generate structured implementation plan (with ambiguity gate) |
+| `just plan "desc"` | Generate structured implementation plan (auto-ideates if context docs are empty) |
 | `just build feat-id` | TDD build cycle (red → green → refactor → optimize) |
 | `just optimize feat-id` | Standalone performance optimization pass |
 | `just debug "desc"` | Bug investigation: reproduce → diagnose → fix → verify |
@@ -133,7 +132,7 @@ just ship v1.0.0
   setup/        # One-command init and dependency installer
   docs/         # Context-as-Contract (PRD, architecture, decisions, features.json)
   agents/       # Agent personas (builder, validator, debugger, researcher, qa, simplifier, contrarian, ideator)
-  commands/     # SDLC prompts (prime, ideate, plan, build, debug, review, ship, retro)
+  commands/     # SDLC prompts (prime, plan, build, debug, review, ship, retro)
   hooks/        # Claude Code hooks — guards, validators, emitters
   threads/      # P/C/L thread orchestration
   insights/     # Self-improvement collector and analyzer
