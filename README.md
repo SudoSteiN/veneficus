@@ -4,7 +4,7 @@ A Claude Code development framework that turns a single developer into an engine
 
 ## What It Does
 
-Veneficus wraps Claude Code with automated validation hooks, specialized agent personas, and structured SDLC workflows. You describe what to build; the framework enforces code quality, runs tests on every file write, and coordinates parallel workstreams — so you ship faster without sacrificing rigor.
+Veneficus wraps Claude Code with automated validation hooks, specialized agent personas, and structured SDLC workflows. You describe what to build; the framework enforces code quality, runs tests on every file write, and coordinates parallel workstreams, so you ship faster without sacrificing rigor.
 
 ## How It Works
 
