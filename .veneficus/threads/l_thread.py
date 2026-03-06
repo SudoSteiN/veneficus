@@ -205,7 +205,7 @@ def main() -> None:
     print(f"\n[L-Thread] Initial failure:\n{output[-500:]}")
 
     output_hashes: list[str] = [_hash_output(output)]
-    persona_index = 0  # Start with default (debugger is implicit at index -1)
+    persona_index = 2  # Start with debugger (default)
     stagnation_count = 0
 
     for iteration in range(1, max_retries + 1):

@@ -96,8 +96,8 @@ just ship v1.0.0
 |---------|-------------|
 | `just plan-team "desc"` | Plan + generate DESIGN_SPEC.md and tasks for native Agent Teams |
 | `just team-build` | Orchestrate build from generated task files |
-| `just team agent task` | Run a specific agent (builder, validator, debugger, researcher, qa) |
-| `just qa` | Run QA agent with user stories |
+| `just team agent task` | Run a specific agent (builder, validator, researcher, debugger, qa) |
+| `just qa` | Run QA agent with user stories (default: user-stories.yaml) |
 | `just browse "task"` | Ad-hoc browser automation |
 
 ### Threads

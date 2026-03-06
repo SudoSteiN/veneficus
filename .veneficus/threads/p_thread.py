@@ -125,15 +125,16 @@ def main() -> None:
             )
 
         # Launch Claude agent in the pane
+        safe_feature = feature.replace("'", "'\\''")
         agent_prompt = (
-            f"You are working on feature '{feature}' in a git worktree. "
+            f"You are working on feature '{safe_feature}' in a git worktree. "
             f"Read .veneficus/agents/builder.md for your instructions. "
-            f"Read .veneficus/docs/features.json and find feature '{feature}'. "
+            f"Read .veneficus/docs/features.json and find feature '{safe_feature}'. "
             f"Follow the TDD build protocol. When done, commit your changes."
         )
 
         cmd = (
-            f"cd {wt_path} && "
+            f"cd '{wt_path}' && "
             f"{env_exports} "
             f"claude --dangerously-skip-permissions -p \"{agent_prompt}\""
         )

@@ -621,12 +621,14 @@ These are the templates that `just init` copies into your project. They're shown
 | `just plan "desc"` | Generate structured implementation plan (auto-ideates if context docs are empty) |
 | `just plan-team "desc"` | Plan + generate DESIGN_SPEC.md and tasks/*.md |
 | `just build feat-id` | TDD build cycle (red → green → refactor) |
+| `just optimize feat-id` | Standalone performance optimization pass |
 | `just team-build` | Agent Teams build from DESIGN_SPEC.md + tasks/*.md |
 | `just debug "desc"` | Systematic bug investigation |
 | `just review` | Code review + security audit (default: last commit) |
 | `just review "range"` | Code review for a specific commit range |
 | `just ship version` | Release prep: tests, changelog, version bump, tag |
 | `just retro` | Session retrospective and improvement analysis |
+| `just continue` | Resume an interrupted build session |
 
 ### Thread Commands
 
@@ -655,6 +657,9 @@ These are the templates that `just init` copies into your project. They're shown
 | `just snapshots` | List snapshots |
 | `just context` | Show full project context |
 | `just dashboard` | Start the real-time observability dashboard |
+| `just rollback` | Restore the most recent pre-build snapshot |
+| `just sync-commands` | Sync `.veneficus/commands/` → `.claude/commands/` |
+| `just insights` | Run self-improvement analysis |
 | `just clean` | Clean up worktrees and event logs |
 
 ---

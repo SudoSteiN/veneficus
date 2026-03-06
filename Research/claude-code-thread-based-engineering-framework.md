@@ -1,3 +1,5 @@
+> **Note:** F-Threads (Fusion) discussed in this document are deprecated in the current framework. Use P-Threads or L-Threads instead.
+
 # Claude Code: Thread-Based Engineering Framework
 
 This analysis breaks down the technical concepts introduced in IndyDevDan's video regarding "Thread-Based Engineering" using **Claude Code**. Following the analysis, I have synthesized these concepts into a concrete, executable framework for you to build software.

@@ -339,6 +339,7 @@ def main() -> None:
                 f"Last error: {truncate(err)}",
                 file=sys.stderr,
             )
+            clear_failure(file_path)
             sys.exit(0)  # Stop blocking after too many failures
         print(truncate(err), file=sys.stderr)
         sys.exit(2)
