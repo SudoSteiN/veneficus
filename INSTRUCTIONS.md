@@ -74,9 +74,21 @@ Files that already exist are never overwritten.
 
 ## Phase 2: Define Your Project
 
-Before building anything, fill in three context documents. These are the contract that all agents work against — they read these files before writing any code.
+Before building anything, you need three context documents populated. These are the contract that all agents work against — they read these files before writing any code.
 
-### 1. Fill in PRD.md
+### Option A: Guided conversation (recommended)
+
+Run the plan command with a description of your idea:
+
+```bash
+just plan "a CLI task manager for developers"
+```
+
+When context docs are empty, `plan` automatically runs a guided ideation interview — about 15 questions over ~10 minutes. It produces all four context documents (PRD.md, architecture.md, decisions.md, features.json) from your answers, then continues into implementation planning.
+
+### Option B: Fill in docs manually
+
+#### PRD.md
 
 Open `.veneficus/docs/PRD.md` and replace the placeholders:
 
@@ -124,7 +136,7 @@ terminal. Existing tools require a browser or have slow startup times.
 - rich (terminal formatting)
 ```
 
-### 2. Fill in architecture.md
+#### architecture.md
 
 Open `.veneficus/docs/architecture.md`:
 
@@ -166,7 +178,7 @@ CLI → Service → Repository → SQLite.
 - **Testing**: pytest, one test file per module
 ````
 
-### 3. Populate features.json
+#### features.json
 
 Open `.veneficus/docs/features.json`:
 
@@ -236,11 +248,11 @@ Open `.veneficus/docs/features.json`:
 - `validate` — Command to run to verify the feature works
 - `depends_on` — Feature IDs that must be done first
 
-### 4. Update CLAUDE.md
+#### CLAUDE.md
 
 Open `CLAUDE.md` at the project root and fill in your tech stack, commands, and conventions. This is what Claude reads first in every session.
 
-### 5. Verify everything loads
+#### Verify everything loads
 
 ```bash
 just prime
@@ -272,6 +284,8 @@ If any context files are missing, `prime` will tell you which ones.
 ## Phase 3: Plan
 
 Before writing code, generate a structured plan. This forces you to think through the implementation before any code is written.
+
+> If you used the guided conversation in Phase 2, `just plan` already produced an implementation plan for your first feature — skip to "Review before building" below. Otherwise, generate a plan manually:
 
 ### Single feature
 
@@ -604,7 +618,7 @@ These are the templates that `just init` copies into your project. They're shown
 | `just init` | Initialize framework in current project |
 | `just deps` | Install all dependencies (bun, uv, just, tmux, jq) |
 | `just prime` | Load context docs and show current project state |
-| `just plan "desc"` | Generate structured implementation plan |
+| `just plan "desc"` | Generate structured implementation plan (auto-ideates if context docs are empty) |
 | `just plan-team "desc"` | Plan + generate DESIGN_SPEC.md and tasks/*.md |
 | `just build feat-id` | TDD build cycle (red → green → refactor) |
 | `just team-build` | Agent Teams build from DESIGN_SPEC.md + tasks/*.md |
